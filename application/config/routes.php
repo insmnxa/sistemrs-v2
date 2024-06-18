@@ -49,7 +49,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'auth/login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
@@ -63,6 +63,7 @@ $route['logout'] = 'auth/logout';
 # Admin page routes
 $route['admin/dashboard'] = 'admin/dashboard';
 
+# User management routes
 $route['admin/users'] = 'admin/user';
 $route['admin/users/create'] = 'admin/user/create';
 $route['admin/users/(:any)/edit'] = 'admin/user/edit/$1';
@@ -89,3 +90,10 @@ $route['admin/obat/(:any)/edit'] = 'admin/obat/edit/$1';
 $route['admin/obat/(:any)/update'] = 'admin/obat/update/$1';
 $route['admin/obat/(:any)/delete'] = 'admin/obat/delete/$1';
 
+# Kategori obat management routes
+$route['admin/obat/kategori-obat'] = 'admin/kategori_obat';
+$route['admin/obat/kategori-obat/create'] = 'admin/kategori_obat/create';
+$route['admin/obat/kategori-obat/store'] = 'admin/kategori_obat/store';
+$route['admin/obat/kategori-obat/(:any)/edit'] = 'admin/kategori_obat/edit/$1';
+$route['admin/obat/kategori-obat/(:any)/update'] = 'admin/kategori_obat/update/$1';
+$route['admin/obat/kategori-obat/(:any)/delete'] = 'admin/kategori_obat/delete/$1';

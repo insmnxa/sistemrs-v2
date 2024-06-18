@@ -75,8 +75,10 @@
         <div id="collapse-obat" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Obat Manajemen</h6>
-                <a class="collapse-item" href="buttons.html">Buttons</a>
-                <a class="collapse-item" href="cards.html">Cards</a>
+                <a class="collapse-item" href="<?= base_url('admin/obat/create') ?>">Input Obat</a>
+                <a class="collapse-item" href="<?= base_url('admin/obat/kategori-obat/create') ?>">Input Kategori Obat Baru</a>
+                <a class="collapse-item" href="<?= base_url('admin/obat') ?>">Daftar Obat</a>
+                <a class="collapse-item" href="<?= base_url('admin/obat/kategori-obat') ?>">Daftar Kategori Obat</a>
             </div>
         </div>
     </li>
