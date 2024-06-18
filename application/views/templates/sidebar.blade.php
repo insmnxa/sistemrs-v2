@@ -51,7 +51,7 @@
         </div>
     </li>
 
-    <li class="nav-item <?= $this->uri->segment(2) === 'dokter' ? 'active' : '' ?>">
+    <li class="nav-item <?= $this->uri->segment(2) === 'docters' ? 'active' : '' ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-dokter"
             aria-expanded="true" aria-controls="collapse-dokter">
             <i class="fas fa-fw fa-user-nurse"></i>
@@ -60,8 +60,8 @@
         <div id="collapse-dokter" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Dokter Manajemen</h6>
-                <a class="collapse-item" href="buttons.html">Buttons</a>
-                <a class="collapse-item" href="cards.html">Cards</a>
+                <a class="collapse-item" href="<?= base_url('admin/docters') ?>">Daftar Dokter</a>
+                <a class="collapse-item" href="<?= base_url('admin/docters/create') ?>">Register Dokter</a>
             </div>
         </div>
     </li>
