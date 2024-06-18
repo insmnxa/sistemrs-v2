@@ -62,3 +62,9 @@ $route['logout'] = 'auth/logout';
 
 # Admin page routes
 $route['admin/dashboard'] = 'admin/dashboard';
+
+$route['admin/users'] = 'admin/user';
+$route['admin/users/create'] = 'admin/user/create';
+$route['admin/users/(:any)/edit'] = 'admin/user/edit/$1';
+$route['admin/users/(:any)/update'] = 'admin/user/update/$1';
+$route['admin/users/(:any)/delete'] = 'admin/user/delete/$1';
