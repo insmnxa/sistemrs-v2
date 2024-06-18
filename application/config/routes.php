@@ -83,3 +83,9 @@ $route['admin/docters/store'] = 'admin/dokter/store';
 $route['admin/docters/(:any)/edit'] = 'admin/dokter/edit/$1';
 $route['admin/docters/(:any)/update'] = 'admin/dokter/update/$1';
 $route['admin/docters/(:any)/delete'] = 'admin/dokter/delete/$1';
+
+# Obat management routes
+$route['admin/obat/(:any)/edit'] = 'admin/obat/edit/$1';
+$route['admin/obat/(:any)/update'] = 'admin/obat/update/$1';
+$route['admin/obat/(:any)/delete'] = 'admin/obat/delete/$1';
+
