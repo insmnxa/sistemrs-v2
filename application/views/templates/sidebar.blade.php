@@ -82,6 +82,17 @@
             </div>
         </div>
     </li>
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-heading">
+        Selling
+    </div>
+
+    <li class="nav-item <?= $this->uri->segment(2) === 'receipts' ? 'active' : '' ?>">
+        <a class="nav-link" href="<?= base_url('admin/receipts') ?>">
+            <i class="fas fa-fw fa-receipt"></i>
+            <span>Peresepan</span></a>
+    </li>
 
     <hr class="sidebar-divider d-none d-md-block">
 

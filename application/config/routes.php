@@ -97,3 +97,9 @@ $route['admin/obat/kategori-obat/store'] = 'admin/kategori_obat/store';
 $route['admin/obat/kategori-obat/(:any)/edit'] = 'admin/kategori_obat/edit/$1';
 $route['admin/obat/kategori-obat/(:any)/update'] = 'admin/kategori_obat/update/$1';
 $route['admin/obat/kategori-obat/(:any)/delete'] = 'admin/kategori_obat/delete/$1';
+
+# Resep management routes
+$route['admin/receipts'] = 'admin/resep';
+$route['admin/receipts/(:any)/create'] = 'admin/resep/create/$1';
+$route['admin/receipts/(:any)/store'] = 'admin/resep/store/$1';
+$route['admin/receipts/(:any)/show'] = 'admin/resep/show/$1';
