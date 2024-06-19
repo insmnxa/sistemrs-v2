@@ -120,4 +120,21 @@ class Obat extends CI_Controller
         $this->obat_model->destroy($id);
         redirect(base_url('admin/obat'));
     }
+
+    public function fetch()
+    {
+        $this->load->model('obat_model');
+        $obat = $this->obat_model->get_obat();
+
+        $searchTerm = $this->input->post('search');
+
+        $matches = [];
+        foreach ($obat as $o) {
+            if (stripos($o->merk, $searchTerm) === 0) {
+                $matches[] = $o;
+            }
+        }
+
+        echo json_encode($matches);
+    }
 }

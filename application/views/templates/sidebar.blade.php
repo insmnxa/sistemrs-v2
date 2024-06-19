@@ -30,13 +30,13 @@
         <div id="collapse-user" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">User Manajemen</h6>
-                <a class="collapse-item" href="<?= base_url('admin/users') ?>">User lists</a>
+                <a class="collapse-item" href="<?= base_url('admin/users') ?>">Daftar user</a>
                 <a class="collapse-item" href="<?= base_url('admin/users/create') ?>">Register user</a>
             </div>
         </div>
     </li>
 
-    <li class="nav-item <?= $this->uri->segment(2) === 'pasien' ? 'active' : '' ?>">
+    <li class="nav-item <?= $this->uri->segment(2) === 'patients' ? 'active' : '' ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-pasien"
             aria-expanded="true" aria-controls="collapse-pasien">
             <i class="fas fa-fw fa-user-injured"></i>
@@ -45,8 +45,8 @@
         <div id="collapse-pasien" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Pasien Manajemen</h6>
-                <a class="collapse-item" href="<?= base_url('admin/pasien') ?>">Pasien list</a>
-                <a class="collapse-item" href="<?= base_url('admin/pasien/create') ?>">Register pasien</a>
+                <a class="collapse-item" href="<?= base_url('admin/patients') ?>">Daftar pasien</a>
+                <a class="collapse-item" href="<?= base_url('admin/patients/create') ?>">Register pasien</a>
             </div>
         </div>
     </li>
@@ -82,6 +82,7 @@
             </div>
         </div>
     </li>
+
     <hr class="sidebar-divider">
 
     <div class="sidebar-heading">
@@ -92,6 +93,12 @@
         <a class="nav-link" href="<?= base_url('admin/receipts') ?>">
             <i class="fas fa-fw fa-receipt"></i>
             <span>Peresepan</span></a>
+    </li>
+
+    <li class="nav-item <?= $this->uri->segment(2) === 'dashboard' ? 'active' : '' ?>">
+        <a class="nav-link" href="<?= base_url('admin/dashboard') ?>">
+            <i class="fas fa-fw fa-money-bill"></i>
+            <span>Penjualan</span></a>
     </li>
 
     <hr class="sidebar-divider d-none d-md-block">
