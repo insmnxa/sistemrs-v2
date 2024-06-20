@@ -95,8 +95,8 @@
             <span>Peresepan</span></a>
     </li>
 
-    <li class="nav-item <?= $this->uri->segment(2) === 'dashboard' ? 'active' : '' ?>">
-        <a class="nav-link" href="<?= base_url('admin/dashboard') ?>">
+    <li class="nav-item <?= $this->uri->segment(2) === 'sellings' ? 'active' : '' ?>">
+        <a class="nav-link" href="<?= base_url('admin/sellings') ?>">
             <i class="fas fa-fw fa-money-bill"></i>
             <span>Penjualan</span></a>
     </li>

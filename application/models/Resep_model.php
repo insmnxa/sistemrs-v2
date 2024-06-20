@@ -38,9 +38,9 @@ class Resep_model extends CI_Model
         self::mark_pacient_as_complete($id_pasien);
     }
 
-    public function get_resep()
+    public function get_receipt()
     {
-        $this->db->select('resep.*, resep.id ri, pasien.id, pasien.nama pa, dokter.id, dokter.nama da');
+        $this->db->select('resep.id r_i, resep.total_harga r_th, resep.status r_s, pasien.id p_i, pasien.nama pa, dokter.id, dokter.nama da');
         $this->db->from('resep');
         $this->db->join('pasien', 'resep.id_pasien = pasien.id');
         $this->db->join('dokter', 'resep.id_dokter = dokter.id');
@@ -89,10 +89,8 @@ class Resep_model extends CI_Model
         $receipt = [];
         $detail_resep = [];
 
-        // Iterate through each result to organize the details into the array
         foreach ($results as $row) {
             if (empty($receipt)) {
-                // Initialize the main prescription details if not already done
                 $receipt = [
                     'p_nama' => $row->p_nama,
                     'p_tl' => $row->p_tl,
@@ -104,7 +102,6 @@ class Resep_model extends CI_Model
                 ];
             }
 
-            // Append the current detail_resep to the detail_resep array
             $detail_resep[] = [
                 'id' => $row->id,
                 'id_resep' => $row->id_resep,
@@ -115,10 +112,8 @@ class Resep_model extends CI_Model
             ];
         }
 
-        // Add the detail_resep array to the main receipt
         $receipt['detail_resep'] = $detail_resep;
 
-        // return $receipt;
         return json_encode($receipt);
     }
 }
