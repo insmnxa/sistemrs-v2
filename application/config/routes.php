@@ -73,6 +73,7 @@ $route['admin/users/(:any)/delete'] = 'admin/user/delete/$1';
 # Pasien management routes
 $route['admin/patients'] = 'admin/pasien';
 $route['admin/patients/create'] = 'admin/pasien/create';
+$route['admin/patients/store'] = 'admin/pasien/store';
 $route['admin/patients/(:any)/edit'] = 'admin/pasien/edit/$1';
 $route['admin/patients/(:any)/update'] = 'admin/pasien/update/$1';
 $route['admin/patients/(:any)/delete'] = 'admin/pasien/delete/$1';
@@ -84,6 +85,7 @@ $route['admin/docters/store'] = 'admin/dokter/store';
 $route['admin/docters/(:any)/edit'] = 'admin/dokter/edit/$1';
 $route['admin/docters/(:any)/update'] = 'admin/dokter/update/$1';
 $route['admin/docters/(:any)/delete'] = 'admin/dokter/delete/$1';
+$route['admin/docters/fetch'] = 'admin/dokter/fetch';
 
 # Obat management routes
 $route['admin/obat/(:any)/edit'] = 'admin/obat/edit/$1';

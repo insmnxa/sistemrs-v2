@@ -1,5 +1,7 @@
 <?php
 
+use PhpParser\Node\Expr\PostDec;
+
 class Pasien extends CI_Controller
 {
     public function __construct()
@@ -32,6 +34,33 @@ class Pasien extends CI_Controller
         }
 
         $this->slice->view('pages/admin/pasien/create');
+    }
+
+    public function store()
+    {
+        if ($this->input->method() !== 'post') {
+            show_error('Invalid method', 405);
+        }
+
+        $this->form_validation->set_rules('nama', 'Nama', ['required', 'trim', 'max_length[128]']);
+        $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', ['required', 'trim']);
+        $this->form_validation->set_rules('no_ktp', 'No KTP', ['required', 'trim', 'max_length[16]']);
+        $this->form_validation->set_rules('no_telp', 'No Telepon', ['required', 'trim', 'max_length[20]']);
+        $this->form_validation->set_rules('id_dokter', 'Dokter', ['required', 'trim', 'max_length[17]']);
+
+        if (!$this->form_validation->run()) {
+            $this->slice->view('pages.admin.pasien.create');
+        }
+
+        $nama = $this->input->post('nama');
+        $tgl_lahir = $this->input->post('tgl_lahir');
+        $no_ktp = $this->input->post('no_ktp');
+        $no_telp = $this->input->post('no_telp');
+        $dokter = $this->dokter_model->get_dokter('', $this->input->post('dokter'));
+        $id_user = $this->session->userdata('user_id');
+
+        $this->pasien_model->store($nama, $tgl_lahir, $no_ktp, $no_telp, $dokter->id, $id_user);
+        redirect(base_url('admin/patients'));
     }
 
     public function edit(string $id)

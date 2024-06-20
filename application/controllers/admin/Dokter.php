@@ -105,4 +105,21 @@ class Dokter extends CI_Controller
         $this->dokter_model->destroy($id);
         redirect(base_url('admin/docters'));
     }
+
+    public function fetch()
+    {
+        if ($this->input->method() !== 'get') {
+            show_error('Invalid method', 405);
+        }
+
+        $docters = [];
+
+        $result = $this->dokter_model->get_dokter();
+
+        foreach ($result as $r) {
+            array_push($docters, $r->nama);
+        }
+
+        echo json_encode($docters);
+    }
 }
