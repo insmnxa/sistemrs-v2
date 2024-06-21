@@ -15,17 +15,20 @@ class Dokter_model extends CI_Model
         if ($id) {
             $query = $this->db->get_where($this->_table, ['id' => $id]);
             $dokter = $query->row();
+
             return $dokter;
         }
 
         if ($nama) {
-            $query  = $this->db->get_where($this->_table, ['nama' => $nama]);
+            $query = $this->db->get_where($this->_table, ['nama' => $nama]);
             $dokter = $query->row();
+
             return $dokter;
         }
 
         $query = $this->db->get($this->_table);
         $dokters = $query->result();
+
         return $dokters;
     }
 
@@ -55,5 +58,10 @@ class Dokter_model extends CI_Model
     public function destroy(string $id)
     {
         $this->db->delete($this->_table, ['id' => $id]);
+    }
+
+    public function count(): int
+    {
+        return $this->db->count_all($this->_table);
     }
 }
