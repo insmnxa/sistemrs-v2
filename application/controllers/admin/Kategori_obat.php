@@ -6,6 +6,8 @@ class Kategori_obat extends CI_Controller
     {
         parent::__construct();
 
+        $this->auth_model->get_current_user();
+
         $this->load->model('kategori_obat_model');
 
         $this->load->helper('form');

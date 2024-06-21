@@ -6,6 +6,8 @@ class Obat extends CI_Controller
     {
         parent::__construct();
 
+        $this->auth_model->get_current_user();
+
         $this->load->model(['obat_model', 'kategori_obat_model']);
 
         $this->load->helper('form');
@@ -76,7 +78,7 @@ class Obat extends CI_Controller
 
         $data = [
             'obat' => $obat,
-            'obat_categories' => $obat_categories
+            'obat_categories' => $obat_categories,
         ];
 
         $this->slice->view('pages/admin/obat/edit', $data);

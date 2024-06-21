@@ -1,7 +1,5 @@
 <?php
 
-use SebastianBergmann\Exporter\Exporter;
-
 class Report extends CI_Controller
 {
     public function __construct()
@@ -9,6 +7,8 @@ class Report extends CI_Controller
         parent::__construct();
 
         $this->load->model('penjualan_model');
+
+        $this->auth_model->get_current_user();
 
         $this->load->library('pdf');
     }
@@ -37,12 +37,12 @@ class Report extends CI_Controller
         $data = [
             'sellings' => $sellings,
             'total_transactions' => $total_transactions->total_harga,
-            'transaction_date' => $date
+            'transaction_date' => $date,
         ];
 
         $date_array = explode('-', $date);
 
-        $data['title'] = implode('', $date_array) . '_penjualan';
+        $data['title'] = implode('', $date_array).'_penjualan';
         $file_pdf = $data['title'];
         $paper = 'A4';
         $orientation = 'landscape';

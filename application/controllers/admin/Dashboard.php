@@ -6,10 +6,10 @@ class Dashboard extends CI_Controller
     {
         parent::__construct();
 
+        $this->auth_model->get_current_user();
+
         // Loading Models
         $this->load->model(['auth_model', 'pasien_model', 'dokter_model', 'obat_model', 'user_model']);
-
-        $this->auth_model->get_current_user();
     }
 
     public function index()

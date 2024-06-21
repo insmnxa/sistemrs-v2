@@ -1,12 +1,12 @@
 <?php
 
-use PhpParser\Node\Expr\PostDec;
-
 class Pasien extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
+
+        $this->auth_model->get_current_user();
 
         $this->load->model(['pasien_model', 'dokter_model']);
 
@@ -74,7 +74,7 @@ class Pasien extends CI_Controller
 
         $data = [
             'patient' => $patient,
-            'docters' => $docters
+            'docters' => $docters,
         ];
 
         $this->slice->view('pages/admin/pasien/edit', $data);

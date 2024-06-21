@@ -6,6 +6,8 @@ class User extends CI_Controller
     {
         parent::__construct();
 
+        $this->auth_model->get_current_user();
+
         // Loading models
         $this->load->model(['user_model', 'auth_model']);
 
@@ -27,7 +29,7 @@ class User extends CI_Controller
     }
 
     /**
-     * Show create user form function
+     * Show create user form function.
      */
     public function create()
     {
@@ -39,7 +41,7 @@ class User extends CI_Controller
     }
 
     /**
-     * Store new user function
+     * Store new user function.
      */
     public function store()
     {
@@ -64,9 +66,7 @@ class User extends CI_Controller
     }
 
     /**
-     * Show edit form function by id
-     * 
-     * @param string $id
+     * Show edit form function by id.
      */
     public function edit(string $id)
     {
@@ -81,9 +81,7 @@ class User extends CI_Controller
     }
 
     /**
-     * Update user by id function
-     * 
-     * @param string $id
+     * Update user by id function.
      */
     public function update(string $id)
     {
@@ -111,9 +109,7 @@ class User extends CI_Controller
     }
 
     /**
-     * Delete user by id function
-     * 
-     * @param string $id
+     * Delete user by id function.
      */
     public function delete(string $id)
     {
