@@ -15,7 +15,7 @@
                 
                     <div class="col-md-2 row">
                         <input type="date" class="form-control mb-2" id="datepicker">
-                        <a class="btn btn-sm btn-secondary mb-3" id="download-btn">Download Report</a>
+                        <a class="btn btn-sm btn-secondary mb-3" id="download-btn"><i class="fas fa-fw fa-download"></i> Download Report</a>
                     </div>
 
                     <table class="table table-bordered" width="100%" cellspacing="0">

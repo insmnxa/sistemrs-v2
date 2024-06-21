@@ -18,6 +18,7 @@ class Obat_model extends CI_Model
             $this->db->join('kategori_obat', 'kategori_obat.id = obat.id_kategori');
             $this->db->where('obat.id', $id);
             $query = $this->db->get();
+
             return $query->row();
         }
 
@@ -25,6 +26,7 @@ class Obat_model extends CI_Model
         $this->db->from('obat');
         $this->db->join('kategori_obat', 'kategori_obat.id = obat.id_kategori');
         $query = $this->db->get();
+
         return $query->result();
     }
 
@@ -45,7 +47,7 @@ class Obat_model extends CI_Model
             'merk' => $merk,
             'stok' => $stok,
             'harga' => $harga,
-            'id_kategori' => $id_kategori
+            'id_kategori' => $id_kategori,
         ];
 
         $this->db->update($this->_table, $data, ['id' => $id]);
@@ -54,5 +56,10 @@ class Obat_model extends CI_Model
     public function destroy(string $id)
     {
         $this->db->delete($this->_table, ['id' => $id]);
+    }
+
+    public function count(): int
+    {
+        return $this->db->count_all($this->_table);
     }
 }

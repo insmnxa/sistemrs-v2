@@ -21,12 +21,14 @@ class Pasien_model extends CI_Model
             $this->db->join('users', 'users.id = pasien.id_user');
             $this->db->where('pasien.id', $id);
             $pasien = $this->db->get();
+
             return $pasien->row();
         }
 
         if (isset($is_receipt_made)) {
             $query = $this->db->get_where($this->_table, ['is_receipt_made' => $is_receipt_made]);
             $pasiens = $query->result();
+
             return $pasiens;
         } else {
             $this->db->select('pasien.id p_i, pasien.nama p_n, pasien.tgl_lahir p_tgl, pasien.no_ktp p_ktp, pasien.no_telp p_tlp, pasien.status, dokter.id, dokter.nama dn, users.id, users.nama un');
@@ -34,6 +36,7 @@ class Pasien_model extends CI_Model
             $this->db->join('dokter', 'dokter.id = pasien.id_dokter');
             $this->db->join('users', 'users.id = pasien.id_user');
             $query = $this->db->get();
+
             return $query->result();
         }
     }
@@ -67,5 +70,10 @@ class Pasien_model extends CI_Model
     public function destroy(string $id)
     {
         $this->db->delete($this->_table, ['id' => $id]);
+    }
+
+    public function count(): int
+    {
+        return $this->db->count_all($this->_table);
     }
 }

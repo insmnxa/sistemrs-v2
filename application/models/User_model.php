@@ -10,10 +10,10 @@ class User_model extends CI_Model
     private $_table = 'users';
 
     /**
-     * Get user function
-     * 
+     * Get user function.
+     *
      * return all users if @param $id is not set
-     * 
+     *
      * @param $id = null
      */
     public function get_users(string $id = null)
@@ -21,18 +21,19 @@ class User_model extends CI_Model
         if ($id) {
             $query = $this->db->get_where($this->_table, ['id' => $id]);
             $user = $query->row();
+
             return $user;
         }
 
         $query = $this->db->select('id, nama, username, is_active')->get($this->_table);
         $users = $query->result();
+
         return $users;
     }
 
     /**
-     * Update user function by user id
-     * 
-     * @param string $id
+     * Update user function by user id.
+     *
      * @param string $nama
      * @param string $username
      * @param string $password = null
@@ -61,12 +62,15 @@ class User_model extends CI_Model
     }
 
     /**
-     * Delete user function by user id
-     * 
-     * @param string $id
+     * Delete user function by user id.
      */
     public function destroy(string $id)
     {
         $this->db->delete($this->_table, ['id' => $id]);
+    }
+
+    public function count()
+    {
+        return $this->db->count_all($this->_table);
     }
 }
