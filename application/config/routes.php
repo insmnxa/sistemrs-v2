@@ -111,3 +111,4 @@ $route['admin/sellings'] = 'admin/penjualan';
 $route['admin/sellings/(:any)/create'] = 'admin/penjualan/create/$1';
 $route['admin/sellings/store'] = 'admin/penjualan/store';
 $route['admin/sellings/(:any)/edit'] = 'admin/penjualan/edit/$1';
+$route['admin/sellings/fetch/(:any)'] = 'admin/penjualan/fetch/$1';

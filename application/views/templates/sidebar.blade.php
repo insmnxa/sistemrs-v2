@@ -101,6 +101,18 @@
             <span>Penjualan</span></a>
     </li>
 
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-heading">
+        Report
+    </div>
+
+    <li class="nav-item <?= $this->uri->segment(2) === 'report' ? 'active' : '' ?>">
+        <a class="nav-link" href="<?= base_url('admin/report') ?>">
+            <i class="fas fa-fw fa-print"></i>
+            <span>Report Penjualan</span></a>
+    </li>
+
     <hr class="sidebar-divider d-none d-md-block">
 
     <div class="text-center d-none d-md-inline">

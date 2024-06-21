@@ -1,7 +1,5 @@
 <?php
 
-use PhpParser\JsonDecoder;
-
 class Penjualan extends CI_Controller
 {
     public function __construct()
@@ -54,5 +52,21 @@ class Penjualan extends CI_Controller
         if ($this->input->method() !== 'post') {
             show_error('Invalid method', 405);
         }
+    }
+
+    public function fetch(string $date)
+    {
+        if ($this->input->method() !== 'get') {
+            show_error('Invalid method', 405);
+        }
+
+        $sellings = $this->penjualan_model->filter_sellings_by_date($date);
+        $total_transactions = $this->penjualan_model->get_transactions_by_date($date);
+
+        $obj = new stdClass();
+        $obj->sellings = $sellings;
+        $obj->total_transactions = $total_transactions;
+
+        echo json_encode($obj);
     }
 }
