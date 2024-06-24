@@ -15,7 +15,7 @@ class Register extends CI_Controller
     }
 
     /**
-     * Show register function form
+     * Show register function form.
      */
     public function index()
     {
@@ -27,7 +27,7 @@ class Register extends CI_Controller
     }
 
     /**
-     * Register function
+     * Register function.
      */
     public function authenticate()
     {
@@ -35,13 +35,32 @@ class Register extends CI_Controller
             show_404();
         }
 
-        $this->form_validation->set_rules('nama', 'Nama', ['required', 'trim', 'max_length[128]']);
-        $this->form_validation->set_rules('username', 'Username', ['required', 'trim', 'max_length[128]']);
-        $this->form_validation->set_rules('password', 'Password', ['required', 'trim', 'min_length[8]']);
-        $this->form_validation->set_rules('repeat_password', 'Repeat Password', ['required', 'trim', 'matches[password]']);
+        $this->form_validation->set_rules('nama', 'Nama', ['required', 'trim', 'max_length[128]'], [
+            'required' => 'Nama tidak boleh kosong',
+            'max_length' => 'Nama tidak boleh lebih dari 128 karakter',
+        ]);
+
+        $this->form_validation->set_rules('username', 'Username', ['required', 'trim', 'max_length[128]'], [
+            'required' => 'Username tidak boleh kosong',
+            'max_length' => 'Username tidak boleh lebih dari 128 karakter',
+        ]);
+
+        $this->form_validation->set_rules('password', 'Password', ['required', 'trim', 'min_length[8]', 'matches[repeat_password]'], [
+            'required' => 'Password tidak boleh kosong',
+            'min_length' => 'Password minimal 8 karakter',
+            'matches' => 'Password tidak sama',
+        ]);
+
+        $this->form_validation->set_rules('repeat_password', 'Repeat Password', ['required', 'trim', 'matches[password]'], [
+            'required' => 'Password tidak boleh kosong',
+            'matches' => 'Password tidak sama',
+        ]);
+
+        $this->form_validation->set_error_delimiters('<div class="small pl-2 text-danger mt-1">', '</div>');
 
         if (!$this->form_validation->run()) {
             $this->slice->view('pages/auth/register');
+
             return;
         }
 
@@ -51,6 +70,8 @@ class Register extends CI_Controller
         $password = $this->input->post('password');
 
         $this->auth_model->register($nama, $username, $password);
+
+        $this->session->set_flashdata('register_success', 'Registrasi berhasil, Silahkan log in!');
 
         redirect(base_url('login'));
     }

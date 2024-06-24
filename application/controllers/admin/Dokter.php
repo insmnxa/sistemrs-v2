@@ -12,6 +12,8 @@ class Dokter extends CI_Controller
 
         $this->load->helper('form');
         $this->load->library('form_validation');
+
+        $this->form_validation->set_error_delimiters('<div class="small pl-2 text-danger mt-1">', '</div>');
     }
 
     public function index()
@@ -41,13 +43,34 @@ class Dokter extends CI_Controller
             show_error('Invalid method', 405);
         }
 
-        $this->form_validation->set_rules('nama', 'Nama', ['required', 'trim', 'max_length[128]']);
-        $this->form_validation->set_rules('nip', 'NIP', ['required', 'trim', 'max_length[18]']);
-        $this->form_validation->set_rules('alamat', 'Alamat', ['required', 'trim']);
-        $this->form_validation->set_rules('no_telp', 'No Telepon', ['required', 'trim', 'max_length[20]']);
+
+        $this->form_validation->set_rules('nama', 'Nama', ['required', 'trim', 'max_length[128]'], [
+            'required' => 'Nama tidak boleh kosong',
+            'max_length' => 'Nama tidak boleh lebih dari 128 karakter'
+        ]);
+
+        $this->form_validation->set_rules('nip', 'NIP', ['required', 'trim', 'max_length[18]', 'min_length[18]', 'numeric'], [
+            'required' => 'NIP tidak boleh kosong',
+            'max_length' => 'NIP tidak boleh lebih dari 18 karakter',
+            'min_length' => 'NIP harus 18 karakter',
+            'numeric' => 'NIP tidak valid'
+        ]);
+
+        $this->form_validation->set_rules('alamat', 'Alamat', ['required', 'trim'], [
+            'required' => 'Alamat tidak boleh kosong'
+        ]);
+
+        $this->form_validation->set_rules('no_telp', 'No Telepon', ['required', 'trim', 'max_length[20]', 'numeric'], [
+            'required' => 'No telepon tidak boleh kosong',
+            'max_length' => 'No telepon tidak boleh lebih dari 20 karakter',
+            'numeric' => 'No telepon tidak valid'
+        ]);
 
         if (!$this->form_validation->run()) {
+            $this->session->set_flashdata('dokter_create_error', 'Gagal meregistrasi dokter!');
             $this->slice->view('pages/admin/dokter/create');
+
+            return;
         }
 
         $nama = $this->input->post('nama');
@@ -56,6 +79,8 @@ class Dokter extends CI_Controller
         $no_telp = $this->input->post('no_telp');
 
         $this->dokter_model->store($nama, $nip, $alamat, $no_telp);
+        $this->session->set_flashdata('dokter_create_success', 'Berhasil meregistrasi dokter!');
+
         redirect(base_url('admin/docters'));
     }
 
@@ -77,14 +102,33 @@ class Dokter extends CI_Controller
             show_error('Invalid method', 405);
         }
 
-        $this->form_validation->set_rules('nama', 'Nama', ['required', 'trim', 'max_length[128]']);
-        $this->form_validation->set_rules('nip', 'NIP', ['required', 'trim', 'max_length[18]']);
-        $this->form_validation->set_rules('alamat', 'Alamat', ['required', 'trim']);
-        $this->form_validation->set_rules('no_telp', 'No Telepon', ['required', 'trim', 'max_length[20]']);
+        $this->form_validation->set_rules('nama', 'Nama', ['required', 'trim', 'max_length[128]'], [
+            'required' => 'Nama tidak boleh kosong',
+            'max_length' => 'Nama tidak boleh lebih dari 128 karakter'
+        ]);
+
+        $this->form_validation->set_rules('nip', 'NIP', ['required', 'trim', 'max_length[18]', 'min_length[18]', 'numeric'], [
+            'required' => 'NIP tidak boleh kosong',
+            'max_length' => 'NIP tidak boleh lebih dari 18 karakter',
+            'min_length' => 'NIP harus 18 karakter',
+            'numeric' => 'NIP tidak valid'
+        ]);
+
+        $this->form_validation->set_rules('alamat', 'Alamat', ['required', 'trim'], [
+            'required' => 'Alamat tidak boleh kosong'
+        ]);
+
+        $this->form_validation->set_rules('no_telp', 'No Telepon', ['required', 'trim', 'max_length[20]', 'numeric'], [
+            'required' => 'No telepon tidak boleh kosong',
+            'max_length' => 'No telepon tidak boleh lebih dari 20 karakter',
+            'numeric' => 'No telepon tidak valid'
+        ]);
 
         if (!$this->form_validation->run()) {
             $docter = $this->dokter_model->get_dokter($id);
             $data = ['docter' => $docter];
+            
+            $this->session->set_flashdata('dokter_edit_error', 'Gagal mengubah dokter!');
 
             $this->slice->view('pages/admin/dokter/edit', $data);
         }
@@ -94,7 +138,9 @@ class Dokter extends CI_Controller
         $alamat = $this->input->post('alamat');
         $no_telp = $this->input->post('no_telp');
 
-        $this->dokter_model->update($nama, $nip, $alamat, $no_telp);
+        $this->dokter_model->update($id, $nama, $nip, $alamat, $no_telp);
+        $this->session->set_flashdata('dokter_edit_success', 'Berhasil mengubah dokter!');
+
         redirect(base_url('admin/docters'));
     }
 
@@ -105,6 +151,8 @@ class Dokter extends CI_Controller
         }
 
         $this->dokter_model->destroy($id);
+        $this->session->set_flashdata('dokter_delete_success', 'Berhasil menghapus dokter!');
+
         redirect(base_url('admin/docters'));
     }
 

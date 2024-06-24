@@ -12,9 +12,10 @@
         <div class="card-body">
             <div class="table-responsive">
                 <div class="mb-3">
-                    <a href="<?= base_url('admin/docters/create') ?>" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> Register dokter</a>
+                    <a href="<?= base_url('admin/docters/create') ?>" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i>
+                        Register dokter</a>
                 </div>
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-sm table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -36,7 +37,7 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach ($data['docters'] as $docter)    
+                        @foreach ($data['docters'] as $docter)
                             <tr>
                                 <td><?= $docter->id ?></td>
                                 <td><?= $docter->nama ?></td>
@@ -44,19 +45,58 @@
                                 <td><?= $docter->alamat ?></td>
                                 <td><?= $docter->no_telp ?></td>
                                 <td class="d-flex">
-                                    <a href="<?= base_url('admin/docters/' . $docter->id . '/edit') ?>" class="btn btn-sm btn-warning">
+                                    <a href="<?= base_url('admin/docters/' . $docter->id . '/edit') ?>"
+                                        class="btn btn-sm btn-warning">
                                         <i class="fas fa-fw fa-pencil-alt"></i>
                                     </a>
-                                    <form action="<?= base_url('admin/docters/' . $docter->id . '/delete') ?>" method="post" onsubmit="return confirm('Yakin hapus dokter?')">
-                                        <button class="btn btn-sm btn-danger" type="submit"><i class="fas fa-fw fa-trash"></i></button>
+                                    <form action="<?= base_url('admin/docters/' . $docter->id . '/delete') ?>"
+                                        method="post" onsubmit="return confirm('Yakin hapus dokter?')">
+                                        <button class="btn btn-sm btn-danger" type="submit"><i
+                                                class="fas fa-fw fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                
+
             </div>
         </div>
     </div>
+
+    <?php if ($this->session->flashdata('dokter_create_success')) : ?>
+    <script>
+        $.toast({
+            displayTime: 'auto',
+            showProgress: 'bottom',
+            title: 'Notification',
+            message: '<?= $this->session->flashdata('dokter_create_success') ?>',
+            class: 'success'
+        });
+    </script>
+    <?php endif; ?>
+
+    <?php if ($this->session->flashdata('dokter_edit_success')) : ?>
+    <script>
+        $.toast({
+            displayTime: 'auto',
+            showProgress: 'bottom',
+            title: 'Notification',
+            message: '<?= $this->session->flashdata('dokter_edit_success') ?>',
+            class: 'success'
+        });
+    </script>
+    <?php endif; ?>
+
+    <?php if ($this->session->flashdata('dokter_delete_success')) : ?>
+    <script>
+        $.toast({
+            displayTime: 'auto',
+            showProgress: 'bottom',
+            title: 'Notification',
+            message: '<?= $this->session->flashdata('dokter_delete_success') ?>',
+            class: 'yellow'
+        });
+    </script>
+    <?php endif; ?>
 @endsection

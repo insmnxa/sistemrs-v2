@@ -41,15 +41,23 @@ class Kategori_obat extends CI_Controller
             show_error('Invalid method', 405);
         }
 
-        $this->form_validation->set_rules('nama', 'Nama', ['required', 'trim', 'max_length[128]']);
+        $this->form_validation->set_rules('nama', 'Nama', ['required', 'trim', 'max_length[128]'], [
+            'required' => 'Nama tidak boleh kosong',
+            'max_length' => 'Nama kategori tidak boleh lebih dari 128 karakter'
+        ]);
 
         if (!$this->form_validation->run()) {
+            $this->session->set_flashdata('kategori_obat_error', 'Gagal menambahkan kategori obat baru!');
             $this->slice->view('pages.admin.kategori_obat.create');
+
+            return;
         }
 
         $nama = $this->input->post('nama');
 
         $this->kategori_obat_model->store($nama);
+        $this->session->set_flashdata('kategori_obat_success', 'Berhasil menambahkan kategori obat baru!');
+
         redirect(base_url('admin/obat/kategori-obat'));
     }
 
@@ -71,15 +79,26 @@ class Kategori_obat extends CI_Controller
             show_error('Invalid method', 405);
         }
 
-        $this->form_validation->set_rules('nama', 'Nama', ['required', 'trim', 'max_length[128]']);
+        $this->form_validation->set_rules('nama', 'Nama', ['required', 'trim', 'max_length[128]'], [
+            'required' => 'Nama tidak boleh kosong',
+            'max_length' => 'Nama kategori tidak boleh lebih dari 128 karakter'
+        ]);
 
         if (!$this->form_validation->run()) {
-            $this->slice->view('pages/admin/kategori_obat/edit');
+            $obat_category = $this->kategori_obat_model->get_kategori_obat($id);
+            $data = ['obat_category' => $obat_category];
+
+            $this->session->set_flashdata('kategori_obat_error_edit', 'Gagal mengubah kategori obat!');
+
+            $this->slice->view('pages/admin/kategori_obat/edit', $data);
+            return;
         }
 
         $nama = $this->input->post('nama');
 
         $this->kategori_obat_model->update($id, $nama);
+        $this->session->set_flashdata('kategori_obat_success_edit', 'Berhasil mengubah kategori obat!');
+
         redirect(base_url('admin/obat/kategori-obat'));
     }
 
@@ -90,6 +109,25 @@ class Kategori_obat extends CI_Controller
         }
 
         $this->kategori_obat_model->destroy($id);
+        $this->session->set_flashdata('kategori_obat_success_delete', 'Berhasil menghapus kategori obat!');
+
         redirect(base_url('admin/obat/kategori-obat'));
+    }
+
+    public function fetch()
+    {
+        if ($this->input->method() !== 'get') {
+            show_error('Invalid method', 405);
+        }
+
+        $obat_categories = [];
+
+        $result = $this->kategori_obat_model->get_kategori_obat();
+
+        foreach ($result as $r) {
+            array_push($obat_categories, $r->nama);
+        }
+
+        echo json_encode($obat_categories);
     }
 }
