@@ -6,6 +6,8 @@ class Penjualan extends CI_Controller
     {
         parent::__construct();
 
+        $this->auth_model->get_current_user();
+
         $this->load->model(['resep_model', 'penjualan_model']);
     }
 

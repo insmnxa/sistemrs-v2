@@ -20,6 +20,11 @@
     <!-- Custom styles for this template-->
     <link href="<?= base_url() ?>assets/css/sb-admin-2.min.css" rel="stylesheet">
 
+    <script src="<?= base_url() ?>assets/jquery/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>semantic/dist/semantic.min.css">
+    <script src="<?= base_url(); ?>semantic/dist/semantic.min.js"></script>
+
 </head>
 
 <body class="bg-gradient-primary">
@@ -51,7 +56,6 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="<?= base_url() ?>assets/jquery/jquery.min.js"></script>
     <script src="<?= base_url() ?>assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->

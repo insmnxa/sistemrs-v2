@@ -11,21 +11,23 @@
 
     <title>SB Admin 2 - Tables</title>
 
-    <link href="<?= base_url(); ?>assets/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="<?= base_url(); ?>assets/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="<?= base_url(); ?>assets/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <script src="<?= base_url(); ?>assets/jquery/jquery.min.js"></script>
-    <script src="<?= base_url(); ?>assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="<?= base_url(); ?>assets/jquery-easing/jquery.easing.min.js"></script>    
-    <script src="<?= base_url(); ?>assets/datatables/jquery.dataTables.min.js"></script>
-    <script src="<?= base_url(); ?>assets/datatables/dataTables.bootstrap4.min.js"></script>
-    <script src="<?= base_url(); ?>assets/js/demo/datatables-demo.js"></script>
-    <script src="<?= base_url(); ?>assets/js/sb-admin-2.min.js"></script>
+    <link href="<?= base_url() ?>assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="<?= base_url() ?>assets/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= base_url() ?>assets/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <script src="<?= base_url() ?>assets/jquery/jquery.min.js"></script>
+    <script src="<?= base_url() ?>assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url() ?>assets/jquery-easing/jquery.easing.min.js"></script>
+    <script src="<?= base_url() ?>assets/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url() ?>assets/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="<?= base_url() ?>assets/js/demo/datatables-demo.js"></script>
+    <script src="<?= base_url() ?>assets/js/sb-admin-2.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>semantic/dist/semantic.min.css">
-    <script src="<?= base_url(); ?>semantic/dist/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>semantic/dist/semantic.min.css">
+    <script src="<?= base_url() ?>semantic/dist/semantic.min.js"></script>
 
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
     <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
 
@@ -51,7 +53,7 @@
 
             </div>
 
-           @include('templates.footer')
+            @include('templates.footer')
 
         </div>
 

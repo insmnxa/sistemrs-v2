@@ -6,6 +6,8 @@ class Resep extends CI_Controller
     {
         parent::__construct();
 
+        $this->auth_model->get_current_user();
+
         $this->load->model(['pasien_model', 'resep_model']);
 
         $this->load->helper('form');

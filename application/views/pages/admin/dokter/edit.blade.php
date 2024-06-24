@@ -6,23 +6,35 @@
         <a href="<?= base_url('admin/docters') ?>" class="btn btn-secondary btn-sm">Back</a>
     </div>
 
-    <form action="<?= base_url('admin/docters/' . $data['docter']->id . '/docters') ?>" method="post">        
-        <div class="col-md-6">
-            
-            <div class="input-group mb-3">
-                <input type="text" name="nama" value="<?= $data['docter']->nama ?>" class="form-control" placeholder="Nama" aria-label="Nama" required>
-                <input type="text" name="nip" value="<?= $data['docter']->nip ?>" class="form-control" placeholder="NIP" aria-label="NIP" minlength="18" maxlength="18" required>
-            </div>
-
-            <div class="input-group mb-3">
-                <textarea class="form-control" name="alamat" placeholder="Alamat" id="alamat" required><?= $data['docter']->alamat ?></textarea>
-            </div>
-        
-            <div class="input-group mb-3">
-                <input type="text" name="no_telp" value="<?= $data['docter']->no_telp ?>" class="form-control" placeholder="No Telepon" required>
-            </div>
-        
-            <button type="submit" class="btn btn-primary">Register user</button>
+    <form action="<?= base_url('admin/docters/' . $data['docter']->id . '/update') ?>" method="post">
+        <div class="input-group mb-3">
+            <input type="text" name="nama" value="<?= $data['docter']->nama ?>" class="form-control" placeholder="Nama"
+                aria-label="Nama" required>
+            <input type="text" name="nip" value="<?= $data['docter']->nip ?>" class="form-control" placeholder="NIP"
+                aria-label="NIP" minlength="18" maxlength="18" required>
         </div>
+
+        <div class="input-group mb-3">
+            <textarea class="form-control" name="alamat" placeholder="Alamat" id="alamat" required><?= $data['docter']->alamat ?></textarea>
+        </div>
+
+        <div class="input-group mb-3">
+            <input type="text" name="no_telp" value="<?= $data['docter']->no_telp ?>" class="form-control"
+                placeholder="No Telepon" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Register user</button>
     </form>
+
+    <?php if ($this->session->flashdata('dokter_edit_error')) : ?>
+    <script>
+        $.toast({
+            displayTime: 'auto',
+            showProgress: 'bottom',
+            title: 'Notification',
+            message: '<?= $this->session->flashdata('dokter_edit_error') ?>',
+            class: 'red'
+        });
+    </script>
+    <?php endif; ?>
 @endsection

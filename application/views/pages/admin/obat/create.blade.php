@@ -6,25 +6,67 @@
         <a href="<?= base_url('admin/obat') ?>" class="btn btn-secondary btn-sm">Back</a>
     </div>
 
-    <form action="<?= base_url('admin/obat/store') ?>" method="post">        
-        <div class="input-group mb-3">
-            <input type="text" name="merk" value="<?= set_value('merk') ?>" class="form-control" placeholder="Merk" aria-label="Merk" required>
-            <input type="number" name="harga" value="<?= set_value('harga') ?>" class="form-control" placeholder="Harga" aria-label="Harga" required>
+    <form action="<?= base_url('admin/obat/store') ?>" method="post">
+
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label for="obat-merk">Merk</label>
+                <input type="text" name="merk" value="<?= set_value('merk') ?>"
+                    class="form-control <?= form_error('merk') ? 'is-invalid' : '' ?>" placeholder="Merk obat"
+                    id="obat-merk" autocomplete="off" autofocus required>
+                <?= form_error('merk') ?>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="obat-harga">Harga</label>
+                <input type="number" name="harga" value="<?= set_value('harga') ?>"
+                    class="form-control <?= form_error('harga') ? 'is-invalid' : '' ?>" placeholder="Harga obat"
+                    id="obat-harga" autocomplete="off" autofocus required>
+                <?= form_error('merk') ?>
+            </div>
         </div>
 
-        <div class="input-group mb-3">
-            <input type="number" name="stok" value="<?= set_value('stok') ?>" class="form-control" minlength="16" placeholder="Stok">
-        </div>
-
-        <div class="input-group mb-3 col-md-4 row">
-            <select name="kategori" value="<?= set_value('kategori') ?>" class="form-control" id="obat">
-                <option disabled selected>Kategori Obat</option>
-                @foreach ($data['obat_categories'] as $obat_category)
-                    <option value="<?= $obat_category->id ?>"><?= $obat_category->nama ?></option>
-                @endforeach
-            </select>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label for="obat-stok">Stok</label>
+                <input type="number" name="stok" value="<?= set_value('stok') ?>"
+                    class="form-control <?= form_error('stok') ? 'is-invalid' : '' ?>" placeholder="Stok obat"
+                    id="obat-stok" autocomplete="off" autofocus required>
+                <?= form_error('stok') ?>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="obat-harga">Kategori</label>
+                <input type="text" name="kategori_obat" value="<?= set_value('kategori_obat') ?>"
+                    class="form-control <?= form_error('kategori_obat') ? 'is-invalid' : '' ?>" placeholder="Kategori obat"
+                    id="kategori-obat" autocomplete="off" autofocus required>
+                <?= form_error('merk') ?>
+            </div>
         </div>
 
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
+
+    <script>
+        $(document).ready(function() {
+            $(async function() {
+                const response = await fetch("<?= base_url('admin/obat/kategori-obat/fetch') ?>");
+                const obat_categories = await response.json();
+
+                $('#kategori-obat').autocomplete({
+                    source: obat_categories
+                });
+            });
+        });
+    </script>
+
+    <?php if ($this->session->flashdata('obat_create_error')) : ?>
+    <script>
+        $.toast({
+            display: 'auto',
+            showProgress: 'bottom',
+            title: 'Notification',
+            message: '<?= $this->session->flashdata('obat_create_error') ?>',
+            class: 'red'
+        });
+    </script>
+    <?php endif; ?>
 @endsection
