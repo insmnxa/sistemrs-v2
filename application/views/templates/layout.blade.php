@@ -21,15 +21,8 @@
     <script src="<?= base_url() ?>assets/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="<?= base_url() ?>assets/js/demo/datatables-demo.js"></script>
     <script src="<?= base_url() ?>assets/js/sb-admin-2.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>semantic/dist/semantic.min.css">
     <script src="<?= base_url() ?>semantic/dist/semantic.min.js"></script>
-
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
     <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
 
 </head>
 

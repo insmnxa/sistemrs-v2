@@ -1,5 +1,7 @@
 <?php
 
+use Money\Money;
+
 class Penjualan extends CI_Controller
 {
     public function __construct()
@@ -44,8 +46,11 @@ class Penjualan extends CI_Controller
         $id_resep = $this->input->post('id_resep');
         $dibayar = $this->input->post('dibayar');
         $kembali = $this->input->post('kembali');
+        
+        $dibayarNominal = explode('.', $dibayar);
+        $dibayarFinal = implode('', $dibayarNominal);
 
-        $this->penjualan_model->store($dibayar, $kembali, $id_resep);
+        $this->penjualan_model->store($dibayarFinal, $kembali, $id_resep);
         redirect(base_url('admin/sellings'));
     }
 

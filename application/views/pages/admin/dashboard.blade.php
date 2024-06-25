@@ -74,13 +74,13 @@
 
     <?php if ($this->session->flashdata('login_success')) : ?>
     <script>
-       $.toast({
+        $.toast({
             displayTime: 'auto',
             showProgress: 'bottom',
             title: 'Notification',
-            message: '<?= $this->session->flashdata("login_success") ?>',
+            message: '<?= $this->session->flashdata('login_success') ?>',
             class: 'success'
         });
     </script>
-<?php endif; ?>
+    <?php endif; ?>
 @endsection

@@ -1,5 +1,9 @@
 @extends('templates/layout')
 
+@php
+    use Brick\Money\Money;
+@endphp
+
 @section('content')
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Halaman Pasien</h1>
@@ -12,7 +16,8 @@
         <div class="card-body">
             <div class="table-responsive">
                 <div class="mb-3">
-                    <a href="<?= base_url('admin/patients/create') ?>" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> Register pasien</a>
+                    <a href="<?= base_url('admin/patients/create') ?>" class="btn btn-primary"><i
+                            class="fas fa-fw fa-plus"></i> Register pasien</a>
                 </div>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -36,30 +41,33 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach ($data['receipts'] as $receipt)    
+                        @foreach ($data['receipts'] as $receipt)
                             <tr>
                                 <td><?= $receipt->r_i ?></td>
-                                <td>Rp <?= $receipt->r_th ?>,-</td>
+                                <td><?= Money::of($receipt->r_th, 'IDR')->formatTo('id_ID') ?></td>
                                 <td><?= $receipt->da ?></td>
                                 <td><?= $receipt->pa ?></td>
                                 @if ($receipt->r_s === 'belum_bayar')
                                     <td><span class="badge badge-danger">Belum Bayar</span></td>
-                                @else 
+                                @else
                                     <td><span class="badge badge-info">Lunas</span></td>
                                 @endif
                                 <td class="d-flex">
-                                    <a href="<?= base_url('admin/sellings/' . $receipt->p_i . '/create') ?>" class="btn btn-sm btn-warning">
+                                    <a href="<?= base_url('admin/sellings/' . $receipt->p_i . '/create') ?>"
+                                        class="btn btn-sm btn-warning">
                                         <i class="fas fa-fw fa-pencil-alt"></i>
                                     </a>
-                                    <form action="<?= base_url('admin/sellings/' . $receipt->p_i . '/delete') ?>" method="post" onsubmit="return confirm('Yakin delete pasien?')">
-                                        <button class="btn btn-sm btn-danger" type="submit"><i class="fas fa-fw fa-trash"></i></button>
+                                    <form action="<?= base_url('admin/sellings/' . $receipt->p_i . '/delete') ?>"
+                                        method="post" onsubmit="return confirm('Yakin delete pasien?')">
+                                        <button class="btn btn-sm btn-danger" type="submit"><i
+                                                class="fas fa-fw fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                
+
             </div>
         </div>
     </div>

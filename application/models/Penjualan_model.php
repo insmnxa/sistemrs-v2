@@ -54,7 +54,7 @@ class Penjualan_model extends CI_Model
         return $query->row();
     }
 
-    public function store(float $dibayar, $kembali, string $id_resep)
+    public function store(string $dibayar, $kembali, $id_resep)
     {
         $this->id = uniqid('SLG-');
         $this->id_resep = $id_resep;
